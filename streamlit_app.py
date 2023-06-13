@@ -4,7 +4,7 @@ import pandas as pd
 # Load data
 @st.cache
 def load_data():
-    url = 'https://gist.githubusercontent.com/jaidevd/23aef12e9bf56c618c41/raw/1b98e8f8b9e65f892a8be27a02dc2dc042a1e867/books.csv'
+    url = 'https://gist.githubusercontent.com/jaidevd/23aef12e9bf56c618c41/raw/c05e98672b8d52fa0cb94aad80f75eb78342e5d4/books_new.csv'
     data = pd.read_csv(url)
     return data
 

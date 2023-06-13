@@ -1,13 +1,9 @@
 import streamlit as st
-import pytube
-from io import BytesIO
+import khtube
 
 def download_video(url):
-    youtube = pytube.YouTube(url)
-    video = youtube.streams.get_highest_resolution()
-    video_bytes = BytesIO()
-    video.download(output_path=video_bytes)
-    return video_bytes
+    video = khtube.single_video(url, quality="best")
+    return video
 
 def main():
     st.title("YouTube Video Downloader")
@@ -15,10 +11,10 @@ def main():
     video_url = st.text_input("Enter the YouTube video URL:")
 
     if st.button("Download"):
-        video_bytes = download_video(video_url)
+        video = download_video(video_url)
         st.download_button(
             label="Click here to download the video",
-            data=video_bytes,
+            data=video,
             file_name="video.mp4",
             mime="video/mp4"
         )

@@ -3,7 +3,8 @@ import khtube
 
 def download_video(url):
     video = khtube.single_video(url, quality="best")
-    return video
+    video.download()
+    return video.title
 
 def main():
     st.title("YouTube Video Downloader")
@@ -11,14 +12,13 @@ def main():
     video_url = st.text_input("Enter the YouTube video URL:")
 
     if st.button("Download"):
-        video = download_video(video_url)
-        st.download_button(
-            label="Click here to download the video",
-            data=video,
-            file_name="video.mp4",
-            mime="video/mp4"
-        )
+        video_title = download_video(video_url)
         st.success("Video downloaded successfully!")
+
+        # Provide a download link to the user
+        video_path = f"./{video_title}.mp4"
+        st.markdown(f"Download the video: [Video Download Link]({video_path})")
 
 if __name__ == "__main__":
     main()
+

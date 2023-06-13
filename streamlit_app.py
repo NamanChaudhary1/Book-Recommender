@@ -1,5 +1,6 @@
 import streamlit as st
 import khtube
+khtube.checkFFmpeg()
 # Placeholder functions for downloading video and playlist videos using the hypothetical khtube library
 def download_video(link, quality, output_path):
     st.write("Downloading video:")

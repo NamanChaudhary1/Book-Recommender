@@ -1,2 +1,2 @@
 streamlit==0.88.0
-pytube==10.8.5
+khtube

@@ -1,8 +1,9 @@
 import streamlit as st
-import khtube
+import pytube
 
 def download_video(url):
-    video = khtube.single_video(url, quality="best")
+    youtube = pytube.YouTube(url)
+    video = youtube.streams.get_highest_resolution()
     video.download()
     return video.title
 
@@ -21,4 +22,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

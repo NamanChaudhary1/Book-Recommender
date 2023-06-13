@@ -4,8 +4,7 @@ import pytube
 def download_video(url):
     youtube = pytube.YouTube(url)
     video = youtube.streams.get_highest_resolution()
-    video.download()
-    return video.title
+    return video
 
 def main():
     st.title("YouTube Video Downloader")
@@ -13,12 +12,10 @@ def main():
     video_url = st.text_input("Enter the YouTube video URL:")
 
     if st.button("Download"):
-        video_title = download_video(video_url)
+        video = download_video(video_url)
+        file_path = video.download()
+        st.markdown(f"Download the video [here]({file_path})")
         st.success("Video downloaded successfully!")
-
-        # Provide a download link to the user
-        video_path = f"./{video_title}.mp4"
-        st.markdown(f"Download the video: [Video Download Link]({video_path})")
 
 if __name__ == "__main__":
     main()

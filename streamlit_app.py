@@ -1,5 +1,6 @@
 import streamlit as st
 import pytube
+import os
 
 def download_video(url):
     youtube = pytube.YouTube(url)
@@ -13,7 +14,7 @@ def main():
 
     if st.button("Download"):
         video = download_video(video_url)
-        file_path = video.download()
+        file_path = video.download(output_path="./Videos/")
         st.markdown(f"Download the video [here]({file_path})")
         st.success("Video downloaded successfully!")
 
